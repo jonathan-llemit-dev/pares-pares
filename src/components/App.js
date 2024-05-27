@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "./Header";
+import CardsGrid from "./CardsGrid";
 
 const cardsList = [
   {
@@ -48,6 +49,7 @@ export default function App() {
   return (
     <div className="container">
       <Header />
+      <CardsGrid cardsList={cardsList} />
     </div>
   );
 }
