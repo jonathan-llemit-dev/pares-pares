@@ -41,3 +41,60 @@ body {
   width: 100%;
   display: block;
 }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cards {
+  display: grid;
+  /* number of column, size of column */
+  grid-template-columns: repeat(4, 12rem);
+  gap: 2rem;
+}
+
+@media (max-width: 1700px) {
+  .cards {
+    grid-template-columns: repeat(2, 36rem);
+  }
+}
+
+@media (max-width: 1220px) {
+  .cards {
+    grid-template-columns: repeat(2, 24rem);
+  }
+}
+
+@media (max-width: 820px) {
+  .cards {
+    grid-template-columns: repeat(1, 36rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .cards {
+    grid-template-columns: repeat(1, 24rem);
+  }
+}
+
+.card {
+  width: 12rem;
+  height: 12rem;
+  background-color: #7c91e3;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden; /* Ensures the image does not overflow the card */
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire card without distortion */
+  cursor: pointer;
+}

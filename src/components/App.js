@@ -31,7 +31,7 @@ const cardsList = [
   {
     id: 6,
     name: "ramen",
-    photoName: "foods/ramen.jpeg",
+    photoName: "foods/ramen.jpg",
   },
   {
     id: 7,
