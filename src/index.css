@@ -52,8 +52,8 @@ body {
 .cards {
   display: grid;
   /* number of column, size of column */
-  grid-template-columns: repeat(4, 12rem);
-  gap: 2rem;
+  grid-template-columns: repeat(4, 10rem);
+  gap: 1rem;
 }
 
 @media (max-width: 1700px) {
@@ -81,8 +81,8 @@ body {
 }
 
 .card {
-  width: 12rem;
-  height: 12rem;
+  width: 10rem;
+  height: 10rem;
   background-color: #7c91e3;
   padding: 3px;
   display: flex;
