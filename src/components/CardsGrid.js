@@ -25,7 +25,7 @@ export default function CardsGrid({ cardsList }) {
           {/* Here we iterate over each card and use the data as props to render components for each card */}
           {cards.map((card, index) => (
             <li className={`card`} key={`${card.name}-${index}`}>
-              <img src={card.photoName} alt={card.name} title="Flip" />
+              <img className={`card_img_hide`} src={card.photoName} alt={card.name} title="Flip" />
             </li>
           ))}
         </ul>
