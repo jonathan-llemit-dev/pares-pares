@@ -18,7 +18,8 @@ export default function CardsGrid({ cardsList }) {
   }, [cardsList]);
 
   function flipCard(card, index){
-
+    // if(card){}
+    setSelectedCard({ ...card, index: `${index}` });
   }
 
   const numCards = cards.length;
