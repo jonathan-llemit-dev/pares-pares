@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 export default function CardsGrid({ cardsList }) {
   const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState([]);
+  const [selectedCard1, setSelectedCard1] = useState(null);
+  const [selectedCard2, setSelectedCard2] = useState(null);
+  const [pairedCards, setPairedCards] = useState([]);
+  const [pause, setPause] = useState(false);
 
   useEffect(() => {
     // Double the content of the cards array
@@ -17,9 +24,30 @@ export default function CardsGrid({ cardsList }) {
     setCards(doubledCards);
   }, [cardsList]);
 
-  function flipCard(card, index){
-    // if(card){}
-    setSelectedCard({ ...card, index: `${index}` });
+  const flipCard = async (card, index) => {
+    if(!pause){
+
+      if(!selectedCard1){
+        setSelectedCard1({ ...card, index: `${index}` });
+      }else if(!selectedCard2){
+
+        setSelectedCard2({ ...card, index: `${index}` });
+        
+        setPause(true);
+        await sleep(750);
+
+        if (selectedCard1.id === card.id) {
+          setPairedCards([...pairedCards, selectedCard1.id]);
+        }
+
+        // Reset selected cards and pause
+        setSelectedCard1(null);
+        setSelectedCard2(null);
+        setPause(false);
+
+      }
+
+    }
   }
 
   const numCards = cards.length;
@@ -30,8 +58,29 @@ export default function CardsGrid({ cardsList }) {
         <ul className="cards">
           {/* Here we iterate over each card and use the data as props to render components for each card */}
           {cards.map((card, index) => (
-            <li className={`card`} key={`${card.name}-${index}`} onClick={(e) => flipCard(card, index)}>
-              <img className={`card_img_hide`} src={card.photoName} alt={`${card.name}-${index}`} title="Flip" />
+            <li 
+              className={`card`} 
+              key={`${card.name}-${index}`} 
+              onClick={
+                () => (
+                        (!pairedCards.includes(card.id)) && 
+                        ((!selectedCard1 || selectedCard1.index != index) && (!selectedCard2 || selectedCard2.index != index))
+                      ) 
+                      && flipCard(card, index)}
+            >
+              <img 
+                  className={
+                    pairedCards.includes(card.id)
+                    ? "card_paired"
+                    : (selectedCard1 && selectedCard1.index == index) || 
+                      (selectedCard2 && selectedCard2.index == index)
+                    ? "card_img_show"
+                    : "card_img_hide"
+                  }  
+                  src={card.photoName} 
+                  alt={`${card.name}-${index}`} 
+                  title="Flip" 
+                />
             </li>
           ))}
         </ul>
