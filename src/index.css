@@ -42,6 +42,39 @@ body {
   display: block;
 }
 
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result h2 {
+  color: #eeeeee;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+.result button {
+  background-color: #7c91e3;
+  color: #252525;
+  border: #252525;
+  padding: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 200;
+  letter-spacing: 2px;
+  position: relative;
+  display: block;
+  margin-top: 2rem;
+}
+
 .menu {
   display: flex;
   flex-direction: column;

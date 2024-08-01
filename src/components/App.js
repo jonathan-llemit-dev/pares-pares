@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "./Header";
+import Result from "./Result";
 import CardsGrid from "./CardsGrid";
 
 const cardsList = [
@@ -46,10 +47,22 @@ const cardsList = [
 ];
 
 export default function App() {
+
+  const [pairedCards, setPairedCards] = useState([]);
+
+  function handlePairedCards(pairedCard){
+    setPairedCards([...pairedCards, pairedCard]);
+  }
+
   return (
     <div className="container">
       <Header />
-      <CardsGrid cardsList={cardsList} />
+      {cardsList.length == pairedCards.length ? (
+          <Result />
+        ):(
+          <CardsGrid cardsList={cardsList} pairedCards={pairedCards} onPairedCards={handlePairedCards} />
+        )
+      }
     </div>
   );
 }

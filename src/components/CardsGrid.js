@@ -4,11 +4,10 @@ const sleep = (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-export default function CardsGrid({ cardsList }) {
+export default function CardsGrid({ cardsList, pairedCards, onPairedCards }) {
   const [cards, setCards] = useState([]);
   const [selectedCard1, setSelectedCard1] = useState(null);
   const [selectedCard2, setSelectedCard2] = useState(null);
-  const [pairedCards, setPairedCards] = useState([]);
   const [pause, setPause] = useState(false);
 
   useEffect(() => {
@@ -37,7 +36,7 @@ export default function CardsGrid({ cardsList }) {
         await sleep(750);
 
         if (selectedCard1.id === card.id) {
-          setPairedCards([...pairedCards, selectedCard1.id]);
+          onPairedCards(selectedCard1.id);
         }
 
         // Reset selected cards and pause
@@ -54,6 +53,7 @@ export default function CardsGrid({ cardsList }) {
 
   return (
     <main className="menu">
+      <h2>{pairedCards.length}/{cardsList.length}</h2>
       {numCards > 0 ? (
         <ul className="cards">
           {/* Here we iterate over each card and use the data as props to render components for each card */}
