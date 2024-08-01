@@ -53,7 +53,6 @@ export default function CardsGrid({ cardsList, pairedCards, onPairedCards }) {
 
   return (
     <main className="menu">
-      <h2>{pairedCards.length}/{cardsList.length}</h2>
       {numCards > 0 ? (
         <ul className="cards">
           {/* Here we iterate over each card and use the data as props to render components for each card */}

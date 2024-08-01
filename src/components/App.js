@@ -54,11 +54,15 @@ export default function App() {
     setPairedCards([...pairedCards, pairedCard]);
   }
 
+  function resetPairedCards(){
+    setPairedCards(pairedCards => []);
+  }
+
   return (
     <div className="container">
       <Header />
       {cardsList.length == pairedCards.length ? (
-          <Result />
+          <Result onResetPairedCards={resetPairedCards} />
         ):(
           <CardsGrid cardsList={cardsList} pairedCards={pairedCards} onPairedCards={handlePairedCards} />
         )
